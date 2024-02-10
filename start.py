@@ -1,4 +1,7 @@
+from tkinter import *
+from gui import ToggleApp
+
 if __name__ == "__main__":
-	root = tk.Tk()
+	root = Tk()
 	app = ToggleApp(root)
 	root.mainloop()
