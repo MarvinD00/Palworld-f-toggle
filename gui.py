@@ -7,22 +7,27 @@ class ToggleApp:
 	def __init__(self):
 		self.root = Tk()
 		self.root.title("Toggle GUI")
-		self.root.geometry("300x300")
+		self.root.geometry("300x400")
 
 		self.running_label = Label(self.root, text="Not Running", fg="red")
 		self.running_label.pack(pady=10)
 
-		self.keys = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 		self.toggle = tg.toggle()
 
-		self.select_key_label = Label(self.root, text="Select Key")
-		self.select_key_label.pack(pady=10)
+		self.select_start_key_label = Label(self.root, text="Select start Key")
+		self.select_start_key_label.pack(pady=10)
 
-		self.key_entry = Entry(self.root, width=20)
-		self.key_entry.pack(pady=10)
+		self.select_stop_key_label = Label(self.root, text="Select stop Key")
+		self.select_stop_key_label.pack(pady=10)
 
-		self.key_entry.bind("<FocusIn>", self.on_focus_in) 
-		self.key_entry.bind("<FocusOut>", self.on_focus_out)
+		self.start_key_entry = Entry(self.root, width=20, state="readonly")
+		self.start_key_entry.pack(pady=10)
+
+		self.stop_key_entry = Entry(self.root, width=20, state="readonly")
+		self.stop_key_entry.pack(pady=10)
+
+		self.start_key_entry.bind("<FocusIn>", self.on_start_focus_in)
+		self.stop_key_entry.bind("<FocusIn>", self.on_stop_focus_in)
 
 		self.toggle_button = Button(self.root, text="Start Toggle", command=self.start_toggle)
 		self.toggle_button.pack(pady=10)
@@ -35,11 +40,15 @@ class ToggleApp:
 
 		self.root.mainloop()
 
-	def on_focus_in(self, event):
-		self.toggle.set_start_key()
+	def on_start_focus_in(self, event):
+		self.start_key_entry.config(state=NORMAL)
+		self.start_key_entry.insert(0, self.toggle.set_key(start=True))
+		self.start_key_entry.config(state="readonly")
 
-	def on_focus_out(self, event):
-		self.toggle.set_stop_key()
+	def on_stop_focus_in(self, event):
+		self.stop_key_entry.config(state=NORMAL)
+		self.stop_key_entry.insert(0, self.toggle.set_key(start=False))
+		self.stop_key_entry.config(state="readonly")
 
 	def start_toggle(self):
 		self.running_label.config(text="Running", fg="green")
