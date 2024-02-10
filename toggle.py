@@ -5,14 +5,30 @@ import threading
 
 class toggle:
 	def __init__(self):
+		self.start_key = None
+		self.stop_key = None
 		self.toggle = False
 		self.thread = None
 
 	def start_toggle(self):
 		if not self.toggle:
 			self.swap()
-			self.listener = keyboard.Listener(on_press=self.on_press)
-			self.listener.start()
+
+	def set_start_key(self):
+		with keyboard.Events() as events:
+			event = events.get(10.0)
+			if event is None:
+				return('You did not press a key within ten seconds, try again')
+			else:
+				return('{}'.format(event))
+			
+	def set_stop_key(self):
+		with keyboard.Events() as events:
+			event = events.get(10.0)
+			if event is None:
+				return('You did not press a key within ten seconds, try again')
+			else:
+				return('{}'.format(event))
 
 	def stop_toggle(self):
 		if self.toggle:
