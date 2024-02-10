@@ -70,7 +70,6 @@ class toggle:
 
 	def hold_f(self):
 		while self.hold:
-			print(threading.active_count())
 			keyboard.Controller().press('f')
 			time.sleep(0.01)
 
