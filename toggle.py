@@ -64,6 +64,7 @@ class toggle:
 	def stop_thread(self):
 		if self.thread and self.thread.is_alive():
 			self.hold = False
+			keyboard.Controller().release('f')
 			self.thread.join()
 			self.thread.stop()
 			self.thread = None
@@ -71,7 +72,6 @@ class toggle:
 	def hold_f(self):
 		while self.hold:
 			keyboard.Controller().press('f')
-			time.sleep(0.01)
 
 	def swap(self):
 		self.toggle = not self.toggle
