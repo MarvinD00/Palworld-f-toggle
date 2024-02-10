@@ -1,6 +1,7 @@
 from pynput import keyboard
 import time
 import threading
+from tkinter.messagebox import showerror
 
 class toggle:
 	def __init__(self):
@@ -22,6 +23,7 @@ class toggle:
 		with keyboard.Events() as events:
 			event = events.get(10.0)
 			if event is None:
+				showerror("Error", "You did not press a key within ten seconds, try again")
 				return 'You did not press a key within ten seconds, try again'
 			else:
 				if hasattr(event.key,'char'):
