@@ -24,7 +24,7 @@ class toggle:
 			event = events.get(10.0)
 			if event is None:
 				showerror("Error", "You did not press a key within ten seconds, try again")
-				return 'You did not press a key within ten seconds, try again'
+				return 'try again'
 			else:
 				if hasattr(event.key,'char'):
 					if start:
@@ -37,7 +37,7 @@ class toggle:
 						self.start_key = event.key
 					else:
 						self.stop_key = event.key
-					return event.key
+					return str(event.key)
 
 	def stop_toggle(self):
 		if self.toggle:
