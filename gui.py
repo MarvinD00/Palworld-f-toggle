@@ -52,6 +52,7 @@ class ToggleApp:
 
 	def on_set_key(self, mode):
 		#show label
+		self.info_Label = Label(self.root)
 		self.info_Label.config(text="The next key you press will be the " + mode)
 		self.info_Label.pack()
 		self.root.update_idletasks()
