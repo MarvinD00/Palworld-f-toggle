@@ -67,10 +67,13 @@ class ToggleApp:
 		self.info_Label.pack_forget()
 
 	def start_toggle(self):
-		self.running_label.config(text="Running", fg="green")
-		self.toggle_button.config(state=DISABLED)
-		self.stop_button.config(state=NORMAL)
-		self.toggle.start_toggle()
+		if self.toggle.both_keys_set():
+			self.running_label.config(text="Running", fg="green")
+			self.toggle_button.config(state=DISABLED)
+			self.stop_button.config(state=NORMAL)
+			self.toggle.start_toggle()
+		else:
+			showinfo("Error", "Both start and stop keys must be set")
 
 	def stop_toggle(self):
 		self.running_label.config(text="Not Running", fg="red")
