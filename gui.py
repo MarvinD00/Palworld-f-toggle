@@ -76,10 +76,6 @@ class ToggleApp:
 		self.toggle_button.config(state=NORMAL)
 		self.stop_button.config(state=DISABLED)
 		self.toggle.stop_toggle()
-		if self.listener:
-			self.listener.stop()
-			self.listener.join()
-			self.listener = None
 
 	def on_press(self, key):
 		self.toggle.on_press(key)
