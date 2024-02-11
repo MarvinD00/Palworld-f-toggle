@@ -2,13 +2,14 @@ from tkinter import *
 from tkinter.messagebox import showinfo
 from tkinter import ttk
 import toggle as tg
+import time
 
 class ToggleApp:
 
 	def __init__(self):
 		self.root = Tk()
 		self.root.title("Toggle GUI")
-		self.root.geometry("300x200")
+		self.root.geometry("300x240")
 
 		self.label_frame = Frame(self.root)
 		self.label_frame.pack()
@@ -18,8 +19,6 @@ class ToggleApp:
 
 		self.button_frame = Frame(self.root)
 		self.button_frame.pack()
-
-		self.mode = "Start key"
 
 		self.toggle = tg.toggle()
 
@@ -44,17 +43,27 @@ class ToggleApp:
 		self.running_label = Label(self.root, text="Not Running", fg="red")
 		self.running_label.pack(pady=10)
 		
+		self.info_Label = Label(self.root)
+
 		self.listener = None
 
 
 		self.root.mainloop()
 
 	def on_set_key(self, mode):
-		showinfo(self.mode, "The next key you press will be the " + self.mode)
+		#show label
+		self.info_Label.config(text="The next key you press will be the " + mode)
+		self.info_Label.pack()
+		self.root.update_idletasks()
+
+		#set key and text
 		if mode == "Start key":
-			self.start_key_label.config(text="Start Key: " + self.toggle.set_key(start=True))
-		if mode == "Stop key":
-			self.stop_key_label.config(text="Stop Key: " + self.toggle.set_key(start=False))
+			self.start_key_label.config(text="Start key: " + self.toggle.set_key(start=True))
+		elif mode == "Stop key":
+			self.stop_key_label.config(text="Stop key: " + self.toggle.set_key(start=False))
+
+		#unpack info_label
+		self.info_Label.pack_forget()
 
 	def start_toggle(self):
 		self.running_label.config(text="Running", fg="green")
