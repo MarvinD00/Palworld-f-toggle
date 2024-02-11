@@ -6,6 +6,7 @@ It uses the pynput library to detect key presses and simulate holding the <font 
 First you will have to clone the repo or download the <font color="lightgreen">.zip.</font>
 
 You will also need python3 which you can download from here : [python.org](https://www.python.org/downloads/).
+Make sure to do "Custom installation" and set a checkmark in the boxes "Add Python to environment variables" and "Assiociate files with Python (requires the 'py' launcher)"
 
 After you have downloaded the repo you can run one of the dependency scripts that will automatically install dependencies using <font color="yellow">pip.</font>
 
@@ -18,6 +19,8 @@ Open a terminal or command prompt and run the main program:
 cd /your/path/to/program-folder/
 python3 gui.py
 ```
+
+or you can double click the gui file if you have 'py' launcher.
 
 ## How to Use
 The GUI window will appear with fields to set the start and stop keys.
