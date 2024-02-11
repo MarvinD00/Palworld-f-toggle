@@ -84,3 +84,8 @@ class toggle:
 		else:
 			return 'off'
 		
+	def both_keys_set(self):
+		if self.start_key and self.stop_key:
+			return True
+		else:
+			return False
