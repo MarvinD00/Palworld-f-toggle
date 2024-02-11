@@ -1,6 +1,6 @@
 @echo off
-echo Installiere pynput und tkinter...
+echo Installiing pynput und tkinter...
 pip install pynput
 pip install tk interface
-echo Installation abgeschlossen.
+echo Installation finished.
 pause
