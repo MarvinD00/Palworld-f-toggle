@@ -26,18 +26,20 @@ class toggle:
 				showerror("Error", "You did not press a key within ten seconds, try again")
 				return 'try again'
 			else:
-				if hasattr(event.key,'char'):
-					if start:
-						self.start_key = event.key.char
-					else:
-						self.stop_key = event.key.char
-					return event.key.char
+				new_key = event.key.char if hasattr(event.key, 'char') else str(event.key)
+
+				if start:
+					if self.stop_key and new_key == self.stop_key:
+						showerror("Error", "Start key and stop key cannot be the same, try again")
+						return 'try again'
+					self.start_key = new_key
 				else:
-					if start:
-						self.start_key = event.key
-					else:
-						self.stop_key = event.key
-					return str(event.key)
+					if self.start_key and new_key == self.start_key:
+						showerror("Error", "Start key and stop key cannot be the same, try again")
+						return 'try again'
+					self.stop_key = new_key
+
+				return new_key
 
 	def stop_toggle(self):
 		if self.toggle:
