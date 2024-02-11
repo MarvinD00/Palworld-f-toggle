@@ -44,9 +44,8 @@ class toggle:
 	def stop_toggle(self):
 		if self.toggle:
 			self.swap()
-			if self.listener:
-				self.listener.stop()
-				self.listener.join()
+			self.listener.stop()
+			self.listener = None
 
 	def on_press(self, key):
 		try:
@@ -70,11 +69,10 @@ class toggle:
 			self.hold = False
 			keyboard.Controller().release('f')
 			self.thread.join()
-			self.thread.stop()
 			self.thread = None
 
 	def hold_f(self):
-		while self.hold:
+		while self.hold and self.toggle:
 			keyboard.Controller().press('f')
 
 	def swap(self):

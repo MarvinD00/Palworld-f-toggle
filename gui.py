@@ -45,9 +45,6 @@ class ToggleApp:
 		
 		self.info_Label = Label(self.root)
 
-		self.listener = None
-
-
 		self.root.mainloop()
 
 	def on_set_key(self, mode):
